@@ -49,5 +49,11 @@ jobs:
       - name: Install Frontend Dependencies
         run: npm install
 
+      - name: Start Frontend Server in Background
+        run: npm run dev &  # Starts Vite in background
+
+      - name: Wait for Frontend to be Ready
+        run: npx wait-on http://localhost:5173  # Waits for Vite to start
+
       - name: Run Cypress Tests
         run: npx cypress run  # FIX: Use headless mode instead of `cy:open`
