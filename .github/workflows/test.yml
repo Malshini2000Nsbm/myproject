@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Change this to your main branch
+      - main  
   pull_request:
     branches:
       - main
@@ -18,31 +18,36 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 22
 
   backend:
     needs: setup
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: myproject/backend  # Ensure this is correct
+        working-directory: backend  
 
     steps:
-      - name: Install Dependencies
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # FIX: Checkout the repo again
+
+      - name: Install Backend Dependencies
         run: npm install
+
 
   frontend:
     needs: setup
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: myproject/frontend  # Ensure this is correct
+        working-directory: frontend  
 
     steps:
-      - name: Install Dependencies
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # FIX: Checkout the repo again
+
+      - name: Install Frontend Dependencies
         run: npm install
 
       - name: Run Cypress Tests
-        run: npm run cy:open
-
-      
+        run: npx cypress run  # FIX: Use headless mode instead of `cy:open`
