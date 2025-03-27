@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend  # Ensure this is correct
+        working-directory: myproject/backend  # Ensure this is correct
 
     steps:
       - name: Install Dependencies
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: frontend  # Ensure this is correct
+        working-directory: myproject/frontend  # Ensure this is correct
 
     steps:
       - name: Install Dependencies
