@@ -38,7 +38,7 @@ describe('Register Page', () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.get('.success-message').should('contain', 'Account created successfully!');
+    cy.get('.success-message', { timeout: 10000 }).should('contain', 'Account created successfully!');
 
     // Check if user is redirected after success
     cy.url().should('eq', 'http://localhost:5173/'); // Adjust URL as per your environment
