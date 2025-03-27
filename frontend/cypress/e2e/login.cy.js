@@ -27,11 +27,11 @@ describe("Login Page Tests", () => {
       cy.get("button").click();
   
       cy.intercept("POST", "http://localhost:5001/login", {
-        statusCode: 401,
-        body: { message: "Invalid email or password" },
+        statusCode: 400,
+        body: { message: "User not found" },
       });
   
-      cy.get(".error-message").should("contain", "Invalid email or password");
+      cy.get(".error-message").should("contain", "User not found");
     });
   
     it("should log in successfully and navigate to home page", () => {
