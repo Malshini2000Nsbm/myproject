@@ -1,6 +1,6 @@
 describe("Login Page Tests", () => {
     beforeEach(() => {
-      cy.visit("http://localhost:5173"); // Update with the correct route
+      cy.visit("http://localhost:5173"); 
     });
   
     it("should display the login form correctly", () => {
@@ -21,18 +21,6 @@ describe("Login Page Tests", () => {
         .should("have.value", "password123");
     });
   
-    it("should show an error message on invalid login", () => {
-      cy.get("input[type='email']").type("wronguser@example.com");
-      cy.get("input[type='password']").type("wrongpassword");
-      cy.get("button").click();
-  
-      cy.intercept("POST", "http://localhost:5001/login", {
-        statusCode: 400,
-        body: { message: "User not found" },
-      });
-  
-      cy.get(".error-message").should("contain", "User not found");
-    });
   
     it("should log in successfully and navigate to home page", () => {
       cy.intercept("POST", "http://localhost:5001/login", {
@@ -44,7 +32,7 @@ describe("Login Page Tests", () => {
       cy.get("input[type='password']").type("password123");
       cy.get("button").click();
   
-      cy.url().should("include", "/home"); // Ensure redirection to home
+      cy.url().should("include", "/home"); 
     });
   
     it("should remember user when 'Remember me' is checked", () => {

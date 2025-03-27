@@ -125,7 +125,7 @@ const Register = () => {
 
           <div className="options">
             <label>
-              <input type="checkbox" required />
+              <input type="checkbox"/>
               I agree to the Terms and Conditions.
             </label>
           </div>
