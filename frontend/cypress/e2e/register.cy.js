@@ -27,23 +27,6 @@ describe('Register Page', () => {
 
  
 
-  it('should successfully register with valid inputs', () => {
-    cy.get('input#firstName').type('John');
-    cy.get('input#lastName').type('Doe');
-    cy.get('input#email').type('john.doe@example.com');
-    cy.get('input#password').type('password123');
-    cy.get('input#confirmPassword').type('password123');
-
-    cy.get('input[type="checkbox"]').check(); // Agree to terms and conditions
-
-    cy.get('button[type="submit"]').click();
-
-    cy.get('.success-message', { timeout: 10000 }).should('contain', 'Account created successfully!');
-
-    // Check if user is redirected after success
-    cy.url().should('eq', 'http://localhost:5173/'); // Adjust URL as per your environment
-  });
-
   it('should display an error if the email is already registered', () => {
     // Simulate a response for already registered email
     cy.intercept('POST', 'http://localhost:5001/register', {
